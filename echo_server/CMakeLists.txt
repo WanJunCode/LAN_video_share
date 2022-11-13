@@ -23,6 +23,8 @@ endif()
 message(STATUS "jsoncpp include dir >>>>> ${CONAN_INCLUDE_DIRS_JSONCPP}")
 message(STATUS "jsoncpp lib dir >>>>> ${CONAN_LIB_DIRS_JSONCPP}")
 
+set(LIB_PATH "-Wl,--rpath=${CONAN_LIB_DIRS_JSONCPP}")
+
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
     set(CMAKE_C_STANDARD 99)
@@ -37,10 +39,17 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     set(CMAKE_CXX_FLAGS "-Wall  -Wextra -Wpedantic -Wno-reorder -Wno-variadic-macros -Wno-unused-parameter  -Wno-unused-result -fdiagnostics-color=always")
 endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage -fprofile-arcs -ftest-coverage -Wno-reorder")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage -fprofile-arcs -ftest-coverage -Wno-reorder ${LIB_PATH}")
 set(CMAKE_C_FLAGS " -g -O0 --coverage -fprofile-arcs -ftest-coverage -Wno-reorder")
 
-include_directories(include/)
+include_directories(
+    include
+    ${CONAN_INCLUDE_DIRS_JSONCPP}
+)
+
+link_directories(
+    ${CONAN_LIB_DIRS_JSONCPP}
+)
 
 set(MAIN_EXEC_NAME echo_server)
 
@@ -53,7 +62,7 @@ add_executable(${MAIN_EXEC_NAME}
 target_link_libraries(
     ${MAIN_EXEC_NAME}
     pthread
-    gtest
+    jsoncpp
 )
 
 install(TARGETS

@@ -1,3 +1,5 @@
+#include <json/json.h>
+
 #include "Tcp_Server.h"
 
 // Tcp_Sever +port
@@ -9,6 +11,8 @@ void User(char *name)
 
 int main(int argc, char *argv[])
 {
+    Json::Reader jsonReader;
+    Json::Value jsonValue;
     if (argc != 2)
     {
         User(argv[0]);
