@@ -5,6 +5,11 @@ set -e
 current=`date "+%Y-%m-%d %H:%M:%S"`
 timeStamp=`date -d "$current" +%s`
 
+# 保证所需要的第三方库全部下载
+cd conan_project/build/
+conan install ..
+cd -
+
 rm -rf bin
 mkdir bin
 

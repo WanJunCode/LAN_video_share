@@ -31,7 +31,8 @@
 *.out
 *.app
 
-conan_project/build/
 echo_server/build/
 echo_server/bin/
+echo_server/conan_project/build/
+
 .vscode/

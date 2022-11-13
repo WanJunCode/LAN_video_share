@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.10.2)
 
 project(echo_server)
 
-include(${CMAKE_BINARY_DIR}/../../conan_project/build/conan_paths.cmake)
-include(${CMAKE_BINARY_DIR}/../../conan_project/build/conanbuildinfo.cmake)
+include(${CMAKE_BINARY_DIR}/../conan_project/build/conan_paths.cmake)
+include(${CMAKE_BINARY_DIR}/../conan_project/build/conanbuildinfo.cmake)
 conan_basic_setup()
 
 # 注意大小写
