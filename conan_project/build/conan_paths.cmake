@@ -1,4 +1,0 @@
-set(CONAN_GTEST_ROOT "/root/.conan/data/gtest/1.8.1/_/_/package/89459b598e1f5db7881df907806432f4694e4bfb")
-set(CONAN_JSONCPP_ROOT "/root/.conan/data/jsoncpp/1.9.5/_/_/package/27cb7fbffba1a5268eda91c4da54b0254d48c3b1")
-set(CMAKE_MODULE_PATH "/root/.conan/data/jsoncpp/1.9.5/_/_/package/27cb7fbffba1a5268eda91c4da54b0254d48c3b1/" ${CONAN_GTEST_ROOT} ${CONAN_JSONCPP_ROOT} ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR})
-set(CMAKE_PREFIX_PATH "/root/.conan/data/jsoncpp/1.9.5/_/_/package/27cb7fbffba1a5268eda91c4da54b0254d48c3b1/" ${CONAN_GTEST_ROOT} ${CONAN_JSONCPP_ROOT} ${CMAKE_PREFIX_PATH} ${CMAKE_CURRENT_LIST_DIR})
