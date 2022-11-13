@@ -1,0 +1,17 @@
+
+<h1>current time {{ time }}</h1>
+<h2>{{ time|date:"Y-m-d" }}</h2>
+
+<h1>{{ hello }}</h1>
+<h1>{{ views_name }}</h1>
+<p>this is a template html</p>
+<!-- # 取出整个列表 -->
+<p>{{ views_list }}</p>
+<!-- # 取出列表的第一个元素 -->
+<p>{{ views_list.0 }}</p>
+<!-- # 取出字典中元素 -->
+<p>{{ views_dict.name }}</p>
+<!-- # 通过管道大写 -->
+<p>{{ views_dict.name | upper }}</p>
+<p>{{ views_str | safe }}</p>
+
