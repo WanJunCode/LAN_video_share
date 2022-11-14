@@ -75,7 +75,7 @@ link_directories(
 
 set(MAIN_EXEC_NAME lan_video_server)
 
-# 获得制定目录下所有源文件
+# 获得指定目录下所有源文件
 aux_source_directory(src source_list)
 
 add_executable(${MAIN_EXEC_NAME}
@@ -100,3 +100,5 @@ add_custom_target(CopyTask
     COMMAND ${CMAKE_COMMAND} -E copy ${gflags_LIB_DIRS}/*so* ../lib
     COMMAND ${CMAKE_COMMAND} -E copy ${glog_LIB_DIRS}/*so* ../lib
 )
+
+add_subdirectory(test)
