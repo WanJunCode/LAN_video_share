@@ -10,16 +10,15 @@ cd conan_project/build/
 conan install ..
 cd -
 
-rm -rf bin
-mkdir bin
-
-rm -rf build
-mkdir build
+rm -rf bin/*
+rm -rf build/*
+rm -rf lib/*
 
 cd build
 cmake ..
 make -j3
 make install
+make CopyTask
 cd -
 
 # cd bin

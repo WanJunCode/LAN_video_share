@@ -1,4 +1,7 @@
 #include "LanVideoServer.h"
+
+#include<glog/logging.h>
+
 #include "Config.h"
 #include "Singleton.h"
 #include "Tcp_Server.h"

@@ -25,13 +25,27 @@ message(STATUS "jsoncpp include dir >>>>> ${CONAN_INCLUDE_DIRS_JSONCPP}")
 message(STATUS "jsoncpp lib dir >>>>> ${CONAN_LIB_DIRS_JSONCPP}")
 
 # 注意大小写
+find_package(gflags REQUIRED)
+message(STATUS "gflags include dir >>>>> ${gflags_INCLUDE_DIR}")
+message(STATUS "gflags lib dir >>>>> ${gflags_LIB_DIRS}")
+
+find_package(glog REQUIRED)
+if(NOT glog_FOUND)
+    message(FATAL_ERROR "glog is not found")
+endif()
+message(STATUS "glog include dir >>>>> ${glog_INCLUDE_DIR}")
+message(STATUS "glog lib dir >>>>> ${glog_LIB_DIRS}")
+
+# 注意大小写
 find_package(fastdds REQUIRED)
 if(NOT fastdds_FOUND)
     message(FATAL_ERROR "fastdds is not found")
 endif()
 message(STATUS "fastdds include dir >>>>> ${fastdds_INCLUDES}")
 
-set(LIB_PATH "-Wl,--rpath=${CONAN_LIB_DIRS_JSONCPP}")
+# set(LIB_PATH "-Wl,--rpath=${CONAN_LIB_DIRS_JSONCPP}:${glog_LIB_DIRS}:${gflags_LIB_DIRS}")
+# set(LIB_PATH "-Wl,--rpath=/home/code/LAN_video_share/lan_video_server/lib/")
+# set(LIB_PATH "-Wl,--rpath=/home/code/LAN_video_share/lan_video_server/lib")
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -72,9 +86,17 @@ target_link_libraries(
     ${MAIN_EXEC_NAME}
     pthread
     jsoncpp
+    gflags
+    glog
 )
 
 install(TARGETS
     ${MAIN_EXEC_NAME}
     DESTINATION ${CMAKE_BINARY_DIR}/../bin
+)
+
+add_custom_target(CopyTask
+    # COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/config ${CMAKE_CURRENT_SOURCE_DIR}/etc
+    COMMAND ${CMAKE_COMMAND} -E copy ${gflags_LIB_DIRS}/*so* ../lib
+    COMMAND ${CMAKE_COMMAND} -E copy ${glog_LIB_DIRS}/*so* ../lib
 )
