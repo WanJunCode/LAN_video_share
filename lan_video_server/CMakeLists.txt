@@ -100,6 +100,7 @@ add_custom_target(CopyTask
     COMMAND ${CMAKE_COMMAND} -E copy ${gflags_LIB_DIRS}/*so* ../lib
     COMMAND ${CMAKE_COMMAND} -E copy ${glog_LIB_DIRS}/*so* ../lib
     COMMAND ${CMAKE_COMMAND} -E copy ${CONAN_LIB_DIRS_GTEST}/*so* ../lib
+    COMMAND ${CMAKE_COMMAND} -E copy ${CONAN_LIB_DIRS_JSONCPP}/*so* ../lib
 )
 
 add_subdirectory(test)

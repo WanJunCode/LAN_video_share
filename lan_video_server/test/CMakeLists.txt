@@ -53,7 +53,4 @@ target_link_libraries(
     gtest
 )
 
-install(TARGETS
-    ${test_exec}
-    DESTINATION ${CMAKE_BINARY_DIR}/../bin
-)
+# install(TARGETS ${test_exec} DESTINATION ${CMAKE_BINARY_DIR}/../bin)

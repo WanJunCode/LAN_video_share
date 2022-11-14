@@ -6,39 +6,10 @@
 #include <unistd.h>
 #include <string.h>
 
-#include "Timer.h"
-
-struct Hander
+class Hander
 {
-    void operator()(int sock, std::string &ip, int port)
-    {
-        char buff[1024];
-        while (true)
-        {
-            memset(buff, 0, sizeof(buff));
-            size_t ReadSize = read(sock, buff, sizeof(buff) - 1);
-            if (ReadSize > 0)
-            {
-                buff[ReadSize] = '\0'; //添加字符串结束标志
-                std::cout << "Client[" << ip << "-port-" << port << "]# " << buff << std::endl;
-                // 需求返回响应前加时间
-                std::string serverResponse = GetCurrentTimeStamp() + " : " + buff;
-                write(sock, serverResponse.c_str(), serverResponse.size()); //向客户端写入数据
-            }
-            else if (ReadSize == 0)
-            { //对端关闭链接
-                std::cout << "Client[" << ip << "-port-" << port << "]# 关闭" << std::endl;
-                break;
-            }
-            else
-            {
-                std::cerr << sock << "读取错误" << std::endl;
-                break;
-            }
-        }
-        std::cout << "服务终止" << std::endl;
-        close(sock);
-    }
+public:
+    void operator()(int sock, std::string &ip, int port);
 };
 
 class Task

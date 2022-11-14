@@ -7,4 +7,11 @@ c++ 后台服务器
 通过 TCP 通信
 后续新增 DDS 通信接口
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/code/LAN_video_share/lan_video_server/lib
+2022/11/14
+完成python web端json数据的发送
+完成C++ 服务端 json 数据的接收、解析、处理、响应流程
+json 格式
+{
+    "name" : "name value",
+    "value" : "default value"
+}
