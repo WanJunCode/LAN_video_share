@@ -31,8 +31,8 @@
 *.out
 *.app
 
-echo_server/build/
-echo_server/bin/
-echo_server/conan_project/build/
+lan_video_server/build/
+lan_video_server/bin/
+lan_video_server/conan_project/build/
 
 .vscode/

@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10.2)
 
-project(echo_server)
+project(lan_video_server)
+
+SET(CONAN_DISABLE_CHECK_COMPILER true)
 
 include(${CMAKE_BINARY_DIR}/../conan_project/build/conan_paths.cmake)
 include(${CMAKE_BINARY_DIR}/../conan_project/build/conanbuildinfo.cmake)
@@ -19,9 +21,15 @@ find_package(jsoncpp REQUIRED)
 if(NOT jsoncpp_FOUND)
     message(FATAL_ERROR "jsoncpp is not found")
 endif()
-
 message(STATUS "jsoncpp include dir >>>>> ${CONAN_INCLUDE_DIRS_JSONCPP}")
 message(STATUS "jsoncpp lib dir >>>>> ${CONAN_LIB_DIRS_JSONCPP}")
+
+# 注意大小写
+find_package(fastdds REQUIRED)
+if(NOT fastdds_FOUND)
+    message(FATAL_ERROR "fastdds is not found")
+endif()
+message(STATUS "fastdds include dir >>>>> ${fastdds_INCLUDES}")
 
 set(LIB_PATH "-Wl,--rpath=${CONAN_LIB_DIRS_JSONCPP}")
 
@@ -51,12 +59,13 @@ link_directories(
     ${CONAN_LIB_DIRS_JSONCPP}
 )
 
-set(MAIN_EXEC_NAME echo_server)
+set(MAIN_EXEC_NAME lan_video_server)
+
+# 获得制定目录下所有源文件
+aux_source_directory(src source_list)
 
 add_executable(${MAIN_EXEC_NAME}
-    src/main.cpp
-    src/Tcp_Server.cpp
-    src/Timer.cpp
+    ${source_list}
 )
 
 target_link_libraries(
