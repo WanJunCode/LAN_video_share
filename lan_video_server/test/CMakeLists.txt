@@ -52,3 +52,8 @@ target_link_libraries(
     pthread
     gtest
 )
+
+install(TARGETS
+    ${test_exec}
+    DESTINATION ${CMAKE_BINARY_DIR}/../bin
+)

@@ -99,6 +99,7 @@ add_custom_target(CopyTask
     # COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/config ${CMAKE_CURRENT_SOURCE_DIR}/etc
     COMMAND ${CMAKE_COMMAND} -E copy ${gflags_LIB_DIRS}/*so* ../lib
     COMMAND ${CMAKE_COMMAND} -E copy ${glog_LIB_DIRS}/*so* ../lib
+    COMMAND ${CMAKE_COMMAND} -E copy ${CONAN_LIB_DIRS_GTEST}/*so* ../lib
 )
 
 add_subdirectory(test)
