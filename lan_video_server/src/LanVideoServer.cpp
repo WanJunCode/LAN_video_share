@@ -6,7 +6,11 @@
 #include "Config.h"
 #include "Singleton.h"
 #include "Tcp_Server.h"
-#include "helloPublisher.h"
+
+#include "LanPublisher.h"
+#include "LanRequest.h"
+#include "LanRequestPubSubTypes.h"
+
 
 LanVideoServer::LanVideoServer(std::string path) : config_path(path)
 {
@@ -49,9 +53,9 @@ void LanVideoServer::listen_process()
 void LanVideoServer::dds_publish()
 {
     printf(">>>>>>>>>>>> begin start dds publish\n");
-    helloPublisher mypub;
-    if (mypub.init())
+    LanPublisher<lan_vodeo::LanRequest, lan_vodeo::LanRequestPubSubType> lan_publisher;
+    if (lan_publisher.init("PersistentLanRequestTopic"))
     {
-        mypub.run();
+        lan_publisher.run();
     }
 }

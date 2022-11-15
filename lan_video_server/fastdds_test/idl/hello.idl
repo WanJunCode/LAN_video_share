@@ -1,4 +1,4 @@
-struct HelloSecurity
+struct lan_request
 {
-    string securityData;
+    string req_data;
 };

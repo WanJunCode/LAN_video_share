@@ -4,23 +4,23 @@
 
 #include "Timer.h"
 
-static void json_write()
-{
-    Json::FastWriter jsonWrite;
-    Json::Value value;
-    value["test"] = 1;
-    value["test2"] = "2"; //写入普通数据
+// static void json_write()
+// {
+//     Json::FastWriter jsonWrite;
+//     Json::Value value;
+//     value["test"] = 1;
+//     value["test2"] = "2"; //写入普通数据
 
-    // 写入数组数据
-    Json::Value valueArray;
-    Json::String atest = "atset";
-    double dtest = 123.2;
-    valueArray.append(atest);
-    valueArray.append(dtest);
-    value["array"] = valueArray;
+//     // 写入数组数据
+//     Json::Value valueArray;
+//     Json::String atest = "atset";
+//     double dtest = 123.2;
+//     valueArray.append(atest);
+//     valueArray.append(dtest);
+//     value["array"] = valueArray;
 
-    Json::String str = jsonWrite.write(value);
-}
+//     Json::String str = jsonWrite.write(value);
+// }
 
 static std::string ConvertJson2Str(Json::Value &root)
 {

@@ -1,5 +1,9 @@
 #include "Tcp_Server.h"
 
+#include "LanPublisher.h"
+#include "LanRequest.h"
+#include "LanRequestPubSubTypes.h"
+
 TcpSever::TcpSever(int _port) : port(_port), listen_sock(-1), Pool(nullptr)
 {
 }
@@ -41,6 +45,10 @@ void TcpSever::Loop()
     //获取客户端信息
     struct sockaddr_in client;
     // signal(SIGCHID,hander);//hander是信号捕捉方法
+
+    LanPublisher<lan_vodeo::LanRequest, lan_vodeo::LanRequestPubSubType> lan_publisher;
+    lan_publisher.init("LanRequestTopic");
+
     while (true)
     {
         socklen_t len = sizeof(client);
@@ -55,6 +63,9 @@ void TcpSever::Loop()
         int port = ntohs(client.sin_port);
         Task asig(sock, ip, port);
         Pool->Push(asig);
+
+        lan_vodeo::LanRequest tmp;
+        lan_publisher.publish(tmp);
     }
 }
 
