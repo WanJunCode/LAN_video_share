@@ -4,16 +4,16 @@
 #include <iostream>
 #include <glog/logging.h>
 
-LanConfig::LanConfig()
+LanConfigManager::LanConfigManager()
 {
 }
 
-LanConfig::~LanConfig()
+LanConfigManager::~LanConfigManager()
 {
 }
 
-void LanConfig::Init(std::string path)
+void LanConfigManager::Init(std::string path)
 {
-    LOG(INFO) << "LanConfig init config " << path;
+    LOG(INFO) << "LanConfigManager init config " << path;
     config_file_path = path;
 }

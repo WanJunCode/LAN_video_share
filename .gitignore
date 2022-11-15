@@ -36,5 +36,7 @@ lan_video_server/bin/
 lan_video_server/lib/
 lan_video_server/logs/
 lan_video_server/conan_project/build/
+lan_video_server/fastdds_test/build/
+lan_video_server/fastdds_test/src/
 
 .vscode/

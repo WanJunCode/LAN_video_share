@@ -1,16 +1,9 @@
 #include <glog/logging.h>
 #include <gflags/gflags.h>
+#include <chrono>
 
-#include "Tcp_Server.h"
 #include "LanVideoServer.h"
 #include "LanDefine.h"
-
-// Tcp_Sever +port
-
-void User(char *name)
-{
-    std::cout << name << " + port" << std::endl;
-}
 
 int main(int argc, char *argv[])
 {
@@ -22,6 +15,11 @@ int main(int argc, char *argv[])
     LanVideoServer lan_server(LAN_CONFIG_PATH);
     lan_server.Init();
     lan_server.Run();
+
+    while(true) {
+        std::this_thread::sleep_for(std::chrono::seconds(30));
+        printf("main sleep\n");
+    }
 
     google::ShutdownGoogleLogging();
     return 0;

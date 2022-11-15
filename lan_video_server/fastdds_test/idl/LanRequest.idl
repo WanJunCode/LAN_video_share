@@ -1,0 +1,20 @@
+module lan_vodeo {
+    struct LanRequest
+    {
+        string lan_name;
+        double lan_value;
+        float lan_float;
+        long lan_long;
+        unsigned long lan_u_long;
+        long long lan_long_long;
+        unsigned long long lan_u_long_long;
+        long double lan_l_double;
+        char lan_char;
+        octet lan_octet;
+        boolean lan_flag;
+        sequence<string> name_arrary;
+
+        uint8 lan_uint8;
+        uint16 lan_uint16;
+    };
+};

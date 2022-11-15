@@ -1,0 +1,44 @@
+使用 fastddsgen 工具解析 xx.idl 文件
+Fast-DDS-Gen/scripts/fastddsgen -example CMake testSecurity.idl
+
+通过 conan 安装 fastdds 的包名为 fastdds, 但是链接时需要使用 fastrtps
+root@c957c7763127:~/.conan/data/fast-dds/2.3.2/_/_/package/1b302f2de6cbc36fff60d39a9455ec4b4d744cac/lib# ls -l
+total 9524
+drwxr-xr-x 2 root root    4096 Nov 14 05:54 cmake
+lrwxrwxrwx 1 root root      18 Nov 14 05:54 libfastrtps.so -> libfastrtps.so.2.3
+lrwxrwxrwx 1 root root      20 Nov 14 05:54 libfastrtps.so.2.3 -> libfastrtps.so.2.3.2
+-rw-r--r-- 1 root root 9746064 Nov 14 05:54 libfastrtps.so.2.3.2
+
+通过工具编译idl生成到制定目录
+./script/scripts/fastddsgen -example CMake idl/hello.idl -d src/
+
+只根据idl生成需要的文件,后续应该只使用这种方式
+./script/scripts/fastddsgen idl/hello.idl -d src/
+
+root@c957c7763127:/home/code/LAN_video_share/lan_video_server/fastdds_test# ls -l tmp/
+total 28
+-rw-r--r-- 1 root root 4109 Nov 15 05:46 hello.cxx
+-rw-r--r-- 1 root root 6186 Nov 15 05:46 hello.h
+-rw-r--r-- 1 root root 5333 Nov 15 05:46 helloPubSubTypes.cxx
+-rw-r--r-- 1 root root 3091 Nov 15 05:46 helloPubSubTypes.h
+
+
+Python与Fast DDS的结合
+https://zhuanlan.zhihu.com/p/543312512
+
+
+
+类型 范围 最小大小（bit） 
+short -215 到 215-1 16 
+unsigned short 0 到 216-1 16 
+long -231 到 231-1 32 
+unsigned long 0 到 232-1 32 
+long long -263 到 263-1 64 
+Unsigned long long 0 到 264-1 64 
+float IEEE 单精度 32 
+double IEEE 双精度 64 
+long double IEEE 双字节扩展浮点数 15 位指数，64 位带符号小数 
+char ISO Latin-1 8 
+wchar 从任何宽字符集编码宽字符，如 Unicode 依赖于实现 
+string ISO Latin-1，除了 ASCII NUL 以外 可变化 
+boolean TRUE 或 FALSE 未指定 

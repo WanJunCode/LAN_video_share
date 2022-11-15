@@ -21,10 +21,10 @@ make install
 make CopyTask
 cd -
 
-cd bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/code/LAN_video_share/lan_video_server/lib
-./lan_video_test
-cd -
+# cd bin
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/code/LAN_video_share/lan_video_server/lib
+# ./lan_video_test
+# cd -
 
 # cd bin
 # eu-strip echo_server -f echo_server.debug

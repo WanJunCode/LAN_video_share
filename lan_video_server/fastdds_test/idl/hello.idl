@@ -1,0 +1,4 @@
+struct HelloSecurity
+{
+    string securityData;
+};

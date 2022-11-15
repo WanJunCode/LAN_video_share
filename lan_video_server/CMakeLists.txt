@@ -42,6 +42,7 @@ if(NOT fastdds_FOUND)
     message(FATAL_ERROR "fastdds is not found")
 endif()
 message(STATUS "fastdds include dir >>>>> ${fastdds_INCLUDES}")
+message(STATUS "fastdds lib dir >>>>> ${fastdds_LIB_DIRS}")
 
 # set(LIB_PATH "-Wl,--rpath=${CONAN_LIB_DIRS_JSONCPP}:${glog_LIB_DIRS}:${gflags_LIB_DIRS}")
 # set(LIB_PATH "-Wl,--rpath=/home/code/LAN_video_share/lan_video_server/lib/")
@@ -66,6 +67,7 @@ set(CMAKE_C_FLAGS " -g -O0 --coverage -fprofile-arcs -ftest-coverage -Wno-reorde
 
 include_directories(
     include
+    fastdds_test/include
     ${CONAN_INCLUDE_DIRS_JSONCPP}
 )
 
@@ -77,9 +79,11 @@ set(MAIN_EXEC_NAME lan_video_server)
 
 # 获得指定目录下所有源文件
 aux_source_directory(src source_list)
+aux_source_directory(fastdds_test/src fast_source_list)
 
 add_executable(${MAIN_EXEC_NAME}
     ${source_list}
+    ${fast_source_list}
 )
 
 target_link_libraries(
@@ -88,6 +92,8 @@ target_link_libraries(
     jsoncpp
     gflags
     glog
+    fastrtps
+    fastcdr
 )
 
 install(TARGETS
@@ -95,12 +101,14 @@ install(TARGETS
     DESTINATION ${CMAKE_BINARY_DIR}/../bin
 )
 
+# 将依赖的第三方库so全部复制到lib目录下，运行时在该目录下查找
 add_custom_target(CopyTask
     # COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/config ${CMAKE_CURRENT_SOURCE_DIR}/etc
     COMMAND ${CMAKE_COMMAND} -E copy ${gflags_LIB_DIRS}/*so* ../lib
     COMMAND ${CMAKE_COMMAND} -E copy ${glog_LIB_DIRS}/*so* ../lib
     COMMAND ${CMAKE_COMMAND} -E copy ${CONAN_LIB_DIRS_GTEST}/*so* ../lib
     COMMAND ${CMAKE_COMMAND} -E copy ${CONAN_LIB_DIRS_JSONCPP}/*so* ../lib
+    COMMAND ${CMAKE_COMMAND} -E copy ${fastdds_LIB_DIRS}/*so* ../lib
 )
 
 add_subdirectory(test)
