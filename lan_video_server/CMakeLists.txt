@@ -65,9 +65,10 @@ endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage -fprofile-arcs -ftest-coverage -Wno-reorder ${LIB_PATH}")
 set(CMAKE_C_FLAGS " -g -O0 --coverage -fprofile-arcs -ftest-coverage -Wno-reorder")
 
+# 头文件路径
 include_directories(
     include
-    include/Utils
+    src/log
     fastdds_test/src
     ${CONAN_INCLUDE_DIRS_JSONCPP}
 )
@@ -80,10 +81,12 @@ set(MAIN_EXEC_NAME lan_video_server)
 
 # 获得指定目录下所有源文件
 aux_source_directory(src source_list)
+aux_source_directory(src/log log_list)
 aux_source_directory(fastdds_test/src fast_source_list)
 
 add_executable(${MAIN_EXEC_NAME}
     ${source_list}
+    ${log_list}
     ${fast_source_list}
 )
 

@@ -3,8 +3,8 @@
 #include <json/json.h>
 
 #include "Timer.h"
-#include "FixedLenBuffer.h"
 #include "Singleton.h"
+#include "AsyncLog.h"
 
 static std::string ConvertJson2Str(Json::Value &root)
 {

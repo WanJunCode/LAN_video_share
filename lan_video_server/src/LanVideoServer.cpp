@@ -11,8 +11,7 @@
 #include "LanRequest.h"
 #include "LanRequestPubSubTypes.h"
 
-#include "FixedLenBuffer.h"
-
+#include "AsyncLog.h"
 
 LanVideoServer::LanVideoServer(std::string path) : config_path(path)
 {
