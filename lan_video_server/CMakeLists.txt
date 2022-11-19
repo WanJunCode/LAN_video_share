@@ -67,6 +67,7 @@ set(CMAKE_C_FLAGS " -g -O0 --coverage -fprofile-arcs -ftest-coverage -Wno-reorde
 
 include_directories(
     include
+    include/Utils
     fastdds_test/src
     ${CONAN_INCLUDE_DIRS_JSONCPP}
 )

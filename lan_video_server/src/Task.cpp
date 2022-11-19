@@ -3,24 +3,8 @@
 #include <json/json.h>
 
 #include "Timer.h"
-
-// static void json_write()
-// {
-//     Json::FastWriter jsonWrite;
-//     Json::Value value;
-//     value["test"] = 1;
-//     value["test2"] = "2"; //写入普通数据
-
-//     // 写入数组数据
-//     Json::Value valueArray;
-//     Json::String atest = "atset";
-//     double dtest = 123.2;
-//     valueArray.append(atest);
-//     valueArray.append(dtest);
-//     value["array"] = valueArray;
-
-//     Json::String str = jsonWrite.write(value);
-// }
+#include "FixedLenBuffer.h"
+#include "Singleton.h"
 
 static std::string ConvertJson2Str(Json::Value &root)
 {
@@ -55,6 +39,8 @@ static std::string ProcessJsonMessage(std::string req_str)
     auto value = jsonValue["value"].asString();
     jsonValue["name"] = "after process " + name;
     jsonValue["value"] = "after process " + value;
+
+    TemPlateSingleton<AsyncLogging>::GetInstance()->log("receiver message from client " + name);
     return ConvertJson2Str(jsonValue);
 }
 

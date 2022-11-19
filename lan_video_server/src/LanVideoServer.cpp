@@ -11,6 +11,8 @@
 #include "LanRequest.h"
 #include "LanRequestPubSubTypes.h"
 
+#include "FixedLenBuffer.h"
+
 
 LanVideoServer::LanVideoServer(std::string path) : config_path(path)
 {
@@ -33,6 +35,10 @@ LanVideoServer::~LanVideoServer()
 
 void LanVideoServer::Init()
 {
+    off_t kRollSize = 500*1000*1000;
+    TemPlateSingleton<AsyncLogging>::GetInstance()->Init("lan_file", kRollSize, 3);
+    TemPlateSingleton<AsyncLogging>::GetInstance()->start();
+
     TemPlateSingleton<LanConfigManager>::GetInstance()->Init(config_path);
 }
 

@@ -17,24 +17,24 @@ private:
 	TemPlateSingleton &operator=(TemPlateSingleton &&tem) = delete;
 
 public:
-	static std::unique_ptr<T> GetInstance();
+	static std::shared_ptr<T> GetInstance();
 
 private:
-	static std::unique_ptr<T> m_pTemplate;
+	static std::shared_ptr<T> m_pTemplate;
 };
 
 template <typename T>
-std::unique_ptr<T> TemPlateSingleton<T>::m_pTemplate = nullptr;
+std::shared_ptr<T> TemPlateSingleton<T>::m_pTemplate = nullptr;
 
 template <typename T>
-std::unique_ptr<T> TemPlateSingleton<T>::GetInstance()
+std::shared_ptr<T> TemPlateSingleton<T>::GetInstance()
 {
 	if (m_pTemplate == nullptr)
 	{
 		static std::once_flag flag;
 		std::call_once(flag, [&]()
-					   { m_pTemplate = std::make_unique<T>(); });
+					   { m_pTemplate = std::make_shared<T>(); });
 	}
 
-	return std::move(m_pTemplate);
+	return m_pTemplate;
 }
