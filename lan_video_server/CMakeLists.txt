@@ -59,7 +59,7 @@ if(NOT CMAKE_CXX_STANDARD)
 endif()
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    set(CMAKE_CXX_FLAGS "-Wall  -Wextra -Wpedantic -Wno-reorder -Wno-variadic-macros -Wno-unused-parameter  -Wno-unused-result -fdiagnostics-color=always")
+    set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Wno-reorder -Wno-variadic-macros -Wno-unused-parameter -Wno-unused-result -fdiagnostics-color=always")
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage -fprofile-arcs -ftest-coverage -Wno-reorder ${LIB_PATH}")
@@ -111,4 +111,4 @@ add_custom_target(CopyTask
     COMMAND ${CMAKE_COMMAND} -E copy ${fastdds_LIB_DIRS}/*so* ../lib
 )
 
-add_subdirectory(test)
+# add_subdirectory(test)

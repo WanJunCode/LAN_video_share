@@ -5,10 +5,14 @@
 #include "LanVideoServer.h"
 #include "LanDefine.h"
 
+#include "Utils/FixedLenBuffer.h"
+
 int main(int argc, char *argv[])
 {
     google::InitGoogleLogging(LAN_LOG_PATH); // init glog
     google::SetLogDestination(google::GLOG_INFO, "../logs/INFO_");
+
+    FixedLenBuffer<1024> fixed_buffer;
 
     LOG(INFO) << "Start LAN VIDEO SERVER log";
 

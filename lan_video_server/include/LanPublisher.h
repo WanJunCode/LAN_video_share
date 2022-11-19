@@ -45,6 +45,8 @@ public:
     {
     }
 
+    // DomainParticipantFactory =》 participant_  =》 publisher_ =》 writer_
+    //                                            =》 topic_
     virtual ~LanPublisher()
     {
         if (writer_ != nullptr)
@@ -69,6 +71,8 @@ public:
         // CREATE THE PARTICIPANT
         DomainParticipantQos pqos;
         pqos.name("Participant_pub");
+
+        // 创建参与者
         participant_ = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
         if (participant_ == nullptr)
         {
@@ -133,6 +137,7 @@ public:
         if (listener_.matched == 0) {
             std::cout << "there are no DataReaders" << std::endl;
         } else {
+            // 实际传入是 void * 指针
             writer_->write(&st);
             std::cout << "write message" << std::endl;
         }
@@ -152,7 +157,7 @@ private:
 
         ~PubListener() override = default;
 
-        void on_publication_matched(
+        virtual void on_publication_matched (
             eprosima::fastdds::dds::DataWriter *writer,
             const eprosima::fastdds::dds::PublicationMatchedStatus &info) override
         {

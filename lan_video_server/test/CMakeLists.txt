@@ -1,5 +1,10 @@
-# cmake_minimum_required(VERSION 3.10.2)
+cmake_minimum_required(VERSION 3.10.2)
 project(test_project)
+
+SET(CONAN_DISABLE_CHECK_COMPILER true)
+include(/home/code/LAN_video_share/lan_video_server/conan_project/build/conan_paths.cmake)
+include(/home/code/LAN_video_share/lan_video_server/conan_project/build/conanbuildinfo.cmake)
+conan_basic_setup()
 
 # 注意大小写
 find_package(GTest REQUIRED)

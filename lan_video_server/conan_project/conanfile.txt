@@ -3,10 +3,12 @@ fast-dds/2.3.2
 gtest/1.8.1
 jsoncpp/1.9.5
 glog/0.4.0
+
 [generators]
 cmake
 cmake_find_package
 cmake_paths
+
 [options]
 gtest:shared=True
 jsoncpp:shared=True

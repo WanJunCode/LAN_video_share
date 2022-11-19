@@ -7,7 +7,8 @@ timeStamp=`date -d "$current" +%s`
 
 # 保证所需要的第三方库全部下载
 cd conan_project/build/
-conan install ..
+# conan install .. --build missing -s compiler=gcc -s compiler.version=7 -s compiler.libcxx=libstdc++11
+conan install .. -s compiler.libcxx=libstdc++11
 cd -
 
 rm -rf bin/*
