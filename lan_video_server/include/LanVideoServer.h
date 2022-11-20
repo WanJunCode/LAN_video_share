@@ -22,4 +22,3 @@ public:
     static void listen_process();
     static void dds_publish();
 };
-

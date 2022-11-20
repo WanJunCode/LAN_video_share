@@ -13,16 +13,16 @@ find_package(GTest REQUIRED)
 if(NOT GTest_FOUND)
     message(FATAL_ERROR "GTest is not found")
 endif()
-message(STATUS "gtest include dir >>>>> ${CONAN_INCLUDE_DIRS_GTEST}")
-message(STATUS "gtest lib dir >>>>> ${CONAN_LIB_DIRS_GTEST}")
+message(STATUS "gtest include dir >>>>> ${GTest_INCLUDE_DIRS}")
+message(STATUS "gtest lib dir >>>>> ${GTest_LIB_DIRS}")
 
 # 注意大小写
 find_package(jsoncpp REQUIRED)
 if(NOT jsoncpp_FOUND)
     message(FATAL_ERROR "jsoncpp is not found")
 endif()
-message(STATUS "jsoncpp include dir >>>>> ${CONAN_INCLUDE_DIRS_JSONCPP}")
-message(STATUS "jsoncpp lib dir >>>>> ${CONAN_LIB_DIRS_JSONCPP}")
+message(STATUS "jsoncpp include dir >>>>> ${jsoncpp_INCLUDE_DIRS}")
+message(STATUS "jsoncpp lib dir >>>>> ${jsoncpp_LIB_DIRS}")
 
 # 注意大小写
 find_package(gflags REQUIRED)
@@ -43,6 +43,14 @@ if(NOT fastdds_FOUND)
 endif()
 message(STATUS "fastdds include dir >>>>> ${fastdds_INCLUDES}")
 message(STATUS "fastdds lib dir >>>>> ${fastdds_LIB_DIRS}")
+
+# 注意大小写
+find_package(ZeroMQ REQUIRED)
+if(NOT ZeroMQ_FOUND)
+    message(FATAL_ERROR "ZeroMQ is not found")
+endif()
+message(STATUS "ZeroMQ include dir >>>>> ${ZeroMQ_INCLUDES}")
+message(STATUS "ZeroMQ lib dir >>>>> ${ZeroMQ_LIB_DIRS}")
 
 # set(LIB_PATH "-Wl,--rpath=${CONAN_LIB_DIRS_JSONCPP}:${glog_LIB_DIRS}:${gflags_LIB_DIRS}")
 # set(LIB_PATH "-Wl,--rpath=/home/code/LAN_video_share/lan_video_server/lib/")
@@ -98,6 +106,7 @@ target_link_libraries(
     glog
     fastrtps
     fastcdr
+    zmq
 )
 
 install(TARGETS
@@ -110,9 +119,10 @@ add_custom_target(CopyTask
     # COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/config ${CMAKE_CURRENT_SOURCE_DIR}/etc
     COMMAND ${CMAKE_COMMAND} -E copy ${gflags_LIB_DIRS}/*so* ../lib
     COMMAND ${CMAKE_COMMAND} -E copy ${glog_LIB_DIRS}/*so* ../lib
-    COMMAND ${CMAKE_COMMAND} -E copy ${CONAN_LIB_DIRS_GTEST}/*so* ../lib
-    COMMAND ${CMAKE_COMMAND} -E copy ${CONAN_LIB_DIRS_JSONCPP}/*so* ../lib
+    COMMAND ${CMAKE_COMMAND} -E copy ${GTest_LIB_DIRS}/*so* ../lib
+    COMMAND ${CMAKE_COMMAND} -E copy ${jsoncpp_LIB_DIRS}/*so* ../lib
     COMMAND ${CMAKE_COMMAND} -E copy ${fastdds_LIB_DIRS}/*so* ../lib
+    COMMAND ${CMAKE_COMMAND} -E copy ${ZeroMQ_LIB_DIRS}/*so* ../lib
 )
 
 # add_subdirectory(test)
