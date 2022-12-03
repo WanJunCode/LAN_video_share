@@ -1,0 +1,9 @@
+//my.proto
+syntax = "proto2";
+package my;
+message helloworld 
+{ 
+   required int32     id = 1;  // ID 
+   required string    str = 2;  // str 
+   optional int32     opt = 3;  //optional field 
+}

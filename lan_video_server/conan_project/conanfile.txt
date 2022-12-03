@@ -4,6 +4,7 @@ gtest/1.8.1
 jsoncpp/1.9.5
 glog/0.4.0
 zeromq/4.3.2
+protobuf/3.17.1
 
 [generators]
 cmake
@@ -16,3 +17,4 @@ jsoncpp:shared=True
 fast-dds:shared=True
 glog:shared=True
 zeromq:shared=True
+protobuf:shared=True

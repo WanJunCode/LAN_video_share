@@ -52,6 +52,13 @@ endif()
 message(STATUS "ZeroMQ include dir >>>>> ${ZeroMQ_INCLUDES}")
 message(STATUS "ZeroMQ lib dir >>>>> ${ZeroMQ_LIB_DIRS}")
 
+find_package(Protobuf REQUIRED)
+if(NOT Protobuf_FOUND)
+    message(FATAL_ERROR "Protobuf is not found")
+endif()
+message(STATUS "Protobuf include dir >>>>> ${protobuf_INCLUDES}")
+message(STATUS "Protobuf lib dir >>>>> ${protobuf_LIB_DIRS}")
+
 # set(LIB_PATH "-Wl,--rpath=${CONAN_LIB_DIRS_JSONCPP}:${glog_LIB_DIRS}:${gflags_LIB_DIRS}")
 # set(LIB_PATH "-Wl,--rpath=/home/code/LAN_video_share/lan_video_server/lib/")
 # set(LIB_PATH "-Wl,--rpath=/home/code/LAN_video_share/lan_video_server/lib")
@@ -107,6 +114,7 @@ target_link_libraries(
     fastrtps
     fastcdr
     zmq
+    protobuf
 )
 
 install(TARGETS
@@ -123,6 +131,7 @@ add_custom_target(CopyTask
     COMMAND ${CMAKE_COMMAND} -E copy ${jsoncpp_LIB_DIRS}/*so* ../lib
     COMMAND ${CMAKE_COMMAND} -E copy ${fastdds_LIB_DIRS}/*so* ../lib
     COMMAND ${CMAKE_COMMAND} -E copy ${ZeroMQ_LIB_DIRS}/*so* ../lib
+    COMMAND ${CMAKE_COMMAND} -E copy ${protobuf_LIB_DIRS}/*so* ../lib
 )
 
 # add_subdirectory(test)

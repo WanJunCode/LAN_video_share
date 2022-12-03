@@ -39,5 +39,7 @@ lan_video_server/conan_project/build/
 lan_video_server/fastdds_test/build/
 lan_video_server/fastdds_test/src/
 lan_video_server/fastdds_test/tmp/
+lan_video_server/test/zeromq_test/cpp/build/
+lan_video_server/test/protocol_buffer_test/build/
 
 .vscode/
