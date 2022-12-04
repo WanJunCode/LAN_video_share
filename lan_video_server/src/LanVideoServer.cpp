@@ -12,6 +12,7 @@
 #include "LanRequestPubSubTypes.h"
 
 #include "AsyncLog.h"
+#include "LanLogger.h"
 
 LanVideoServer::LanVideoServer(std::string path) : config_path(path)
 {
@@ -37,8 +38,12 @@ void LanVideoServer::Init()
     off_t kRollSize = 500*1000*1000;
     TemPlateSingleton<AsyncLogging>::GetInstance()->Init("lan_file", kRollSize, 3);
     TemPlateSingleton<AsyncLogging>::GetInstance()->start();
-
     TemPlateSingleton<LanConfigManager>::GetInstance()->Init(config_path);
+
+    // logger 单例
+    TemPlateSingleton<LanLogger>::GetInstance()->debug();
+    TemPlateSingleton<LanLogger>::GetInstance()->Init();
+    TemPlateSingleton<LanLogger>::GetInstance()->debug();
 }
 
 void LanVideoServer::Run()
