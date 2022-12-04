@@ -84,7 +84,6 @@ set(CMAKE_C_FLAGS " -g -O0 --coverage -fprofile-arcs -ftest-coverage -Wno-reorde
 include_directories(
     include
     logger
-    src/log
     fastdds_test/src
     thirdparty
     ${CONAN_INCLUDE_DIRS_JSONCPP}
@@ -99,7 +98,6 @@ set(MAIN_EXEC_NAME lan_video_server)
 # 获得指定目录下所有源文件
 aux_source_directory(src source_list)
 aux_source_directory(logger logger_src)
-aux_source_directory(src/log log_list)
 aux_source_directory(fastdds_test/src fast_source_list)
 
 add_executable(${MAIN_EXEC_NAME}
