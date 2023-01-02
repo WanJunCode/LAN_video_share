@@ -39,14 +39,26 @@ link_directories(
     ${protobuf_LIB_DIRS}
 )
 
-set(EXEC protocol_writer)
+set(writer_exec protocol_writer)
 aux_source_directory(generated/src gen_source)
 # 获得制定目录下所有源文件
-add_executable(${EXEC}
+add_executable(${writer_exec}
     src/writer.cpp
     ${gen_source}
 )
 target_link_libraries(
-    ${EXEC}
+    ${writer_exec}
+    protobuf
+)
+
+set(reader_exec protocol_reader)
+aux_source_directory(generated/src gen_source)
+# 获得制定目录下所有源文件
+add_executable(${reader_exec}
+    src/reader.cpp
+    ${gen_source}
+)
+target_link_libraries(
+    ${reader_exec}
     protobuf
 )

@@ -38,7 +38,8 @@ link_directories(
 # send
 set(publishe_exec zmq_server)
 add_executable(${publishe_exec}
-    send.cpp
+    send.c
+    comm.c
 )
 target_link_libraries(
     ${publishe_exec}
@@ -48,7 +49,8 @@ target_link_libraries(
 # receiver
 set(subscriber_exec zmq_client)
 add_executable(${subscriber_exec}
-    receiver.cpp
+    recv.c
+    comm.c
 )
 target_link_libraries(
     ${subscriber_exec}

@@ -31,6 +31,8 @@
 *.out
 *.app
 
+zeromq/
+
 lan_video_server/build/
 lan_video_server/bin/
 lan_video_server/lib/
@@ -41,5 +43,6 @@ lan_video_server/fastdds_test/src/
 lan_video_server/fastdds_test/tmp/
 lan_video_server/test/zeromq_test/cpp/build/
 lan_video_server/test/protocol_buffer_test/build/
+lan_video_server/test/protocol_buffer_test/generated/
 
 .vscode/
